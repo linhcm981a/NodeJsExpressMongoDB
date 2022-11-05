@@ -17,7 +17,7 @@ const authController = {
             const authors = await Author.find();
             res.json(authors);
         } catch (err) {
-            res.status(500).json(err.msg);
+            res.status(500).json(err);
         }
     },
 

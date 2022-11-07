@@ -2,8 +2,13 @@ const router = require("express").Router();
 const authorController = require("../controllers/authorController");
 const bookController = require("../controllers/bookController");
 const authController = require("../controllers/authController");
+const verifySignUp  = require("../middleware/verifySignUp");
 
-router.post("/api/auth/signup", authController.signup);
+router.post(
+  "/api/auth/signup",
+  [verifySignUp.checkDuplicateUsernameOrEmail, verifySignUp.checkRolesExisted],
+  authController.signup
+);
 router.post("/api/auth/signin", authController.signin);
 
 router.post("/", authorController.addAuthor);

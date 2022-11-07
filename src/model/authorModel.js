@@ -1,20 +1,20 @@
 const mongoose = require("mongoose");
 
 const authorSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
+  name: {
+    type: String,
+    required: true,
+  },
+  year: {
+    type: Number,
+    required: true,
+  },
+  books: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Book",
     },
-    year: {
-        type: Number,
-        required: true,
-    },
-    books: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Book",
-        },
-    ],
+  ],
 });
 
 let Author = mongoose.model("Author", authorSchema);
